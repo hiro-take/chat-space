@@ -19,7 +19,7 @@
             %p.group__gropu-name  
               = group.name
             %p.group__latest-message
-              sample
+              = group.show_last_message
   .chat-main
     .main-header
       .main-header__left-box
@@ -33,23 +33,27 @@
         .main-header__edit-btn
           Edit
     .messages
-      .message{:data_mind_id => '8626'}
-        .message__upper-info
-          %p.message__upper-info__talker
-            user
-          %p.message__upper-info__date
-            2019/10/10(fri)0:0:0
-        .message__text
-          aa
+      = render @messages
+ 
     .form
-      %form.new_message#new_message{:enctype => "mulchpart/form-data",:action => "/group/3373/messages",:accept_chareet => 'utf-8',:mesod => 'post'}
-        %input{:name => 'utf8',:type => 'hidden',:value => ','} 
-        %input{:name => 'authenticity_token',:type => 'hidden',:value =>''}
-        .input-box
-          %input.input-box__text#message_content{:name => 'message[content]',:placeholder => 'type a message',:type => "text"}
-          %label.input-box__image{:for => 'message_image'}
-            = fa_icon 'image'
-            %input.inout-box__image__file#message_image{:name => 'message[image]',:type => 'file',}
-        %input.submit-btn{:name => "commit",:type => 'submit',:value => 'Send',:data_disable_with => 'Send'} 
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
+
+
+    -# .form
+    -#   %form.new_message#new_message{:enctype => "mulchpart/form-data",:action => "/group/3373/messages",:accept_chareet => 'utf-8',:mesod => 'post'}
+    -#     %input{:name => 'utf8',:type => 'hidden',:value => ','} 
+    -#     %input{:name => 'authenticity_token',:type => 'hidden',:value =>''}
+    -#     .input-box
+    -#       %input.input-box__text#message_content{:name => 'message[content]',:placeholder => 'type a message',:type => "text"}
+    -#       %label.input-box__image{:for => 'message_image'}
+    -#         = fa_icon 'image'
+    -#         %input.inout-box__image__file#message_image{:name => 'message[image]',:type => 'file',}
+    -#     %input.submit-btn{:name => "commit",:type => 'submit',:value => 'Send',:data_disable_with => 'Send'} 
 
 
