@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   function buildHTML(message) {
     
-    var image = message.image.url? `<img src= ${message.image.url} , size: "200x200">`: "";
+    var image = message.image.url? `<img src= ${message.image.url} >`: "";
     
 
     var html = `<div class="message" data-message-id="${message.id}">
@@ -65,9 +65,9 @@ $(document).on('turbolinks:load', function() {
         })
         .done(function(messages) {
           var insertHTML = '';
-          console.log(messages);
+
           if(messages[0]){
-            console.log(messages)
+     
           messages.forEach(function (message) {
             insertHTML = buildHTML(message);
             $('.messages').append(insertHTML); 
