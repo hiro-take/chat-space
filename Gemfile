@@ -68,3 +68,9 @@ gem 'mini_magick'
   gem 'faker'
 
   gem 'jquery-rails'
+
+  
+
+  group :production do
+  gem 'unicorn', '5.4.1'
+end
