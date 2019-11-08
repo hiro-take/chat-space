@@ -3,7 +3,7 @@
     %p.message__upper-info__talker
       = message.user.name
     %p.message__upper-info__date
-      = message.created_at
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
   .message__text
     = message.content
     = image_tag message.image, class: 'lower-message__image'if message.image.present?
